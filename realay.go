@@ -5,11 +5,13 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"log"
 	"net"
 )
 
 func Relay(conn net.Conn, src *bufio.Reader, addr string, port string) error {
 	dest, err := net.Dial("tcp", fmt.Sprintf("%s:%s", addr, port))
+	log.Println("dial", addr, port)
 	if err != nil {
 		return err
 	}
